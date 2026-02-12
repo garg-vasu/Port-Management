@@ -298,7 +298,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
             </span>
           </div>
           <span className="font-semibold text-lg whitespace-nowrap">
-            Logistics Managment
+            Logistics Manag.
           </span>
         </div>
 
