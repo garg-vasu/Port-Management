@@ -79,46 +79,17 @@ export interface NavigationItem {
 // Navigation items organized by user role
 const menuItemsByRole: Record<string, NavigationItem[]> = {
   superadmin: [
-    {
-      name: "All NFA",
-      icon: FileText,
-      href: "/",
-    },
-    // {
-    //   name: "NFA Card",
-    //   icon: FileText,
-    //   href: "/mix-card-view",
-    // },
-    {
-      name: "Add NFA",
-      icon: FileText,
-      href: "/add/nfa",
-    },
-    {
-      name: "Users",
-      icon: Users,
-      href: "/users",
-    },
-    {
-      name: "User Creation",
-      icon: UserCircle,
-      href: "/user-creation",
-    },
+    { name: "All NFA", icon: ClipboardList, href: "/" },
+    { name: "Add NFA", icon: ScrollText, href: "/add/nfa" },
+    { name: "Stages", icon: FolderKanban, href: "/stages" },
+    { name: "Stage Creation", icon: LayoutTemplate, href: "/add/stage" },
     {
       name: "Order Selection",
       icon: TextSelectionIcon,
       href: "/order-selection",
     },
-    { name: "Stage Creation", icon: Building2, href: "/add/stage" },
-    { name: "Stages", icon: Building2, href: "/stages" },
-    // {
-    //   name: "Dashboard",
-    //   icon: Home,
-    //   children: [
-    //     { name: "Monthly", href: "/", icon: Calendar },
-    //     { name: "Overview", href: "/projectOverview", icon: BarChart },
-    //   ],
-    // },
+    { name: "Users", icon: Users, href: "/users" },
+    { name: "User Creation", icon: UserCircle, href: "/user-creation" },
   ],
 };
 
@@ -323,11 +294,11 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
         >
           <div className="w-8 h-8 bg-primary flex items-center justify-center rounded">
             <span className="text-primary-foreground font-bold text-sm">
-              PM
+              LM
             </span>
           </div>
           <span className="font-semibold text-lg whitespace-nowrap">
-            Port Management
+            Logistics Managment
           </span>
         </div>
 

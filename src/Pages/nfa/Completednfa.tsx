@@ -94,7 +94,19 @@ export const columns: ColumnDef<CompletedNfa>[] = [
     id: "nfa_code",
     header: "NFA Code",
     accessorFn: (pendingNfa) => pendingNfa.nfa_code ?? "",
-    cell: ({ row }) => <div>{row.original.nfa_code ?? "—"}</div>,
+    cell: ({ row }) => {
+      const navigate = useNavigate();
+      return (
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => navigate(`/nfa-detail/${row.original.id}`)}
+        >
+          <div className="flex flex-col">
+            <span className="capitalize">{row.original.nfa_code ?? "—"}</span>
+          </div>
+        </div>
+      );
+    },
   },
   {
     id: "name",
@@ -105,7 +117,7 @@ export const columns: ColumnDef<CompletedNfa>[] = [
       return (
         <div
           className="flex items-center gap-3 cursor-pointer"
-          onClick={() => navigate(`/user-detail/${row.original.id}`)}
+          onClick={() => navigate(`/nfa-detail/${row.original.id}`)}
         >
           <div className="flex flex-col">
             <span className="capitalize">{name}</span>

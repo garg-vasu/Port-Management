@@ -68,6 +68,7 @@ export type Stage = {
   user_id: number;
   question: StageQuestion[];
   order: number;
+  user_name: string;
 };
 
 export const columns: ColumnDef<Stage>[] = [
@@ -105,6 +106,7 @@ export const columns: ColumnDef<Stage>[] = [
     accessorFn: (stage) => stage.description ?? "",
     cell: ({ row }) => <div>{row.original.description ?? "—"}</div>,
   },
+
   {
     id: "order",
     header: "Order",
@@ -114,8 +116,8 @@ export const columns: ColumnDef<Stage>[] = [
   {
     id: "Assigned To",
     header: "Assigned To",
-    accessorFn: (stage) => stage.user_id ?? "",
-    cell: ({ row }) => <div>{row.original.user_id ?? "—"}</div>,
+    accessorFn: (stage) => stage.user_name ?? "",
+    cell: ({ row }) => <div>{row.original.user_name ?? "—"}</div>,
   },
 
   // CREATED AT

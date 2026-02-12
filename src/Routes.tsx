@@ -17,7 +17,8 @@ import EditUser from "./Pages/User/EditUser";
 import { AddNfa } from "./Pages/nfa/AddNfa";
 
 import { ApprovalPending } from "./Pages/nfa/ApprovalPending";
-import MixCardNfa from "./Pages/nfa/MixCardNfa";
+
+import { NfaDetailPage } from "./Pages/nfa/nfaDetailPage";
 
 const routes: RouteObject[] = [
   { path: "/login", element: <Login /> },
@@ -35,6 +36,7 @@ const routes: RouteObject[] = [
         index: true,
         element: <MixNfa />,
       },
+      { path: "/nfa-detail/:nfa_id", element: <NfaDetailPage /> },
       // { path: "/mix-card-view", element: <MixCardNfa /> },
       { path: "/users", element: <UserTable /> },
       { path: "/edit-user/:user_id", element: <EditUser /> },

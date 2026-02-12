@@ -26,6 +26,7 @@ export type Stage = {
   user_id: number;
   question: StageQuestion[];
   order: number;
+  user_name: string;
 };
 
 const getErrorMessage = (error: AxiosError | unknown, data: string): string => {
@@ -285,7 +286,7 @@ export function OrderSelection() {
                           variant="outline"
                           className="hidden sm:inline-flex max-w-[120px] truncate"
                         >
-                          {user.description}
+                          {user.user_name}
                         </Badge>
                       )}
                     </div>
