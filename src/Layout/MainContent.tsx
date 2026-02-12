@@ -1,0 +1,52 @@
+import { NavLink, Outlet } from "react-router";
+import TopBar from "./TopBar";
+import { useSidebar } from "@/hooks/useSidebar";
+
+interface MainContentProps {
+  isSidebarCollapsed: boolean;
+}
+
+export default function MainContent({ isSidebarCollapsed }: MainContentProps) {
+  return (
+    <div className="flex flex-col flex-1 h-full overflow-hidden ">
+      {/* content area  */}
+      {/* <TopBar onToggleSidebar={toggle} /> */}
+      <main className="flex flex-col flex-1 overflow-y-auto">
+        <Outlet />
+      </main>
+      {/* footer  */}
+      {/* hide in mobile  */}
+      <div className="hidden md:block">
+        <footer className="border-t border-border bg-background backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="px-6 py-4">
+            <div className="flex items-center justify-between text-sm text-muted-foreground">
+              <div className="flex items-center space-x-4">
+                <span>© 2026 Port Management System. All rights reserved.</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <NavLink
+                  to="/privacy-policy"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Privacy Policy
+                </NavLink>
+                <NavLink
+                  to="/terms-of-service"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Terms of Service
+                </NavLink>
+                <NavLink
+                  to="/support"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Support
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
