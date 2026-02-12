@@ -11,6 +11,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Separator } from "@/components/ui/separator";
 import { FileText, Link2, CheckCircle2 } from "lucide-react";
 import type { PendingNfaDetail, Question } from "./ApprovalPending";
+import { useNavigate } from "react-router-dom";
 
 const nfaParameterAnswerSchema = z.object({
   label: z.string(),
@@ -18,7 +19,7 @@ const nfaParameterAnswerSchema = z.object({
   value: z.string().min(1, "Required"),
   commentValue: z.string().optional(),
   fileName: z.string().optional(),
-  id: z.number(),
+  question_id: z.number(),
 });
 
 const statusNfaChangeSchema = z.object({
@@ -34,6 +35,7 @@ type StatusNfaChangeProps = {
 };
 
 export function StatusNfaChange({ nfa, Questions }: StatusNfaChangeProps) {
+  const navigate = useNavigate();
   const buildFileUrl = (file?: string) => {
     if (!file) return "";
     if (file.startsWith("http://") || file.startsWith("https://")) {
@@ -64,7 +66,7 @@ export function StatusNfaChange({ nfa, Questions }: StatusNfaChangeProps) {
     defaultValues: {
       nfa_id: nfa.id,
       parameters: Questions.map((p) => ({
-        id: p.id,
+        question_id: p.id,
         label: p.label,
         type: p.type,
         value: "",
@@ -76,13 +78,15 @@ export function StatusNfaChange({ nfa, Questions }: StatusNfaChangeProps) {
 
   const onSubmit = async (data: StatusNfaChangeForm) => {
     try {
-      const res = await apiClient.post("/nfa/status-change", data);
+      const res = await apiClient.post(`/nfa/${nfa.id}/complete`, data);
       if (res.status === 200 || res.status === 201) {
         toast.success("NFA status updated successfully");
+        navigate("/");
       }
     } catch (err) {
       console.error("API error on status change:", err);
       toast.error("Failed to update NFA status");
+      navigate("/");
     }
   };
 
