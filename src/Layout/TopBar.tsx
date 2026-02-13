@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/mode-toggle";
+import { UserContext } from "@/Provider/UserProvider";
 
 interface TopBarProps {
   onToggleSidebar: () => void;
@@ -28,6 +29,17 @@ const buildAvatarSrc = (profilePicture?: string) => {
 export default function TopBar({ onToggleSidebar }: TopBarProps) {
   const navigate = useNavigate();
   // const { user } = useContext(UserContext);
+  // add user context HERE
+  const { user } = useContext(UserContext);
+
+  // Generate initials for avatar fallback
+  const getInitials = () => {
+    if (!user) return "U";
+    // get first 2 letter of name
+    const first = user.name?.[0] || "";
+    const second = user.name?.[1] || "";
+    return first.toUpperCase() + second.toUpperCase();
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
@@ -44,6 +56,8 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
   //     (first + last).toUpperCase() || user.email?.[0]?.toUpperCase() || "U"
   //   );
   // };
+
+  console.log("user", user);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -73,8 +87,13 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
                 aria-label="User menu"
               >
                 <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarImage
+                    src={buildAvatarSrc(user?.profile_picture)}
+                    alt={user?.name || "User"}
+                  />
+                  <AvatarFallback className="bg-primary text-white text-sm font-medium">
+                    {getInitials()}
+                  </AvatarFallback>
                 </Avatar>
               </button>
             </DropdownMenuTrigger>
@@ -82,12 +101,10 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {/* {user?.first_name} {user?.last_name} */}
-                    Loading demo name
+                    {user?.name}
                   </p>
                   <p className="text-xs text-muted-foreground truncate">
-                    {/* {user?.email} */}
-                    loading@demo.com
+                    {user?.email}
                   </p>
                 </div>
               </DropdownMenuLabel>

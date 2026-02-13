@@ -18,15 +18,15 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   Loader2,
-  Anchor,
-  Ship,
-  Container,
   ClipboardCheck,
   Shield,
   Eye,
   EyeOff,
   ArrowLeft,
   Monitor,
+  Package,
+  Truck,
+  Layers,
 } from "lucide-react";
 
 const baseUrl = import.meta.env.VITE_API_URL;
@@ -373,13 +373,15 @@ export default function Login() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
-                <Anchor className="w-7 h-7 text-white" />
+                <Package className="w-7 h-7 text-white" />
               </div>
               <div>
                 <h1 className="text-2xl font-semibold text-white">
-                  Port Management
+                  Consignment Tracking
                 </h1>
-                <p className="text-white/70 text-sm">Maritime Operations</p>
+                <p className="text-white/70 text-sm">
+                  Logistics & Supply Chain
+                </p>
               </div>
             </div>
           </div>
@@ -387,28 +389,28 @@ export default function Login() {
           {/* Main Content */}
           <div className="flex-1 flex flex-col justify-center max-w-lg">
             <h2 className="text-3xl xl:text-4xl font-semibold text-white mb-4 leading-tight">
-              Streamline Your Port Operations
+              Streamline Your Consignment Tracking
             </h2>
             <p className="text-white/80 text-base xl:text-lg mb-8">
-              From vessel arrivals to cargo handling, manage every port
-              operation with precision and efficiency.
+              From dispatch to delivery, manage every consignment stage with
+              precision and efficiency.
             </p>
 
             {/* Feature Cards */}
             <div className="grid gap-3">
               <FeatureCard
-                icon={Ship}
-                title="Vessel Management"
-                description="Track vessels, arrivals, and departures in real-time"
+                icon={Truck}
+                title="Real-time Tracking"
+                description="Track consignments, stages, and status updates in real-time"
               />
               <FeatureCard
-                icon={Container}
-                title="Cargo Handling"
-                description="Coordinate cargo operations and manage logistics efficiently"
+                icon={Layers}
+                title="Stage Management"
+                description="Coordinate consignment stages and manage logistics efficiently"
               />
               <FeatureCard
                 icon={ClipboardCheck}
-                title="Operations Control"
+                title="Workflow Automation"
                 description="Ensure compliance with built-in approval workflows"
               />
               <FeatureCard
@@ -422,12 +424,12 @@ export default function Login() {
           {/* Footer Stats */}
           <div className="flex gap-8 pt-6 border-t border-white/20">
             <div>
-              <p className="text-2xl font-semibold text-white">500+</p>
-              <p className="text-white/70 text-sm">Vessels Managed</p>
+              <p className="text-2xl font-semibold text-white">10K+</p>
+              <p className="text-white/70 text-sm">Active Consignments</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold text-white">50K+</p>
-              <p className="text-white/70 text-sm">Cargo Operations</p>
+              <p className="text-2xl font-semibold text-white">1M+</p>
+              <p className="text-white/70 text-sm">Stages Completed</p>
             </div>
             <div>
               <p className="text-2xl font-semibold text-white">99.9%</p>
@@ -443,12 +445,12 @@ export default function Login() {
           {/* Mobile Logo */}
           <div className="flex lg:hidden items-center justify-center gap-3 mb-8">
             <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-              <Anchor className="w-7 h-7 text-primary-foreground" />
+              <Package className="w-7 h-7 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold">Port Management</h1>
+              <h1 className="text-xl font-semibold">Consignment Tracking</h1>
               <p className="text-muted-foreground text-sm">
-                Maritime Operations
+                Logistics & Supply Chain
               </p>
             </div>
           </div>
@@ -458,8 +460,7 @@ export default function Login() {
             <CardHeader className="space-y-1 pb-4">
               <CardTitle className="text-2xl">Welcome back</CardTitle>
               <CardDescription>
-                Sign in to your account to continue managing your port
-                operations
+                Sign in to your account to continue managing your consignments
               </CardDescription>
             </CardHeader>
 
@@ -563,17 +564,17 @@ export default function Login() {
           {/* Mobile Feature Highlights */}
           <div className="mt-8 lg:hidden">
             <p className="text-center text-sm text-muted-foreground mb-4">
-              Trusted by port operators worldwide
+              Trusted by logistics companies worldwide
             </p>
             <div className="flex justify-center gap-6 text-center">
               <div>
-                <p className="text-lg font-semibold text-foreground">500+</p>
-                <p className="text-xs text-muted-foreground">Vessels</p>
+                <p className="text-lg font-semibold text-foreground">10K+</p>
+                <p className="text-xs text-muted-foreground">Consignments</p>
               </div>
               <div className="w-px bg-border" />
               <div>
-                <p className="text-lg font-semibold text-foreground">50K+</p>
-                <p className="text-xs text-muted-foreground">Operations</p>
+                <p className="text-lg font-semibold text-foreground">1M+</p>
+                <p className="text-xs text-muted-foreground">Stages</p>
               </div>
               <div className="w-px bg-border" />
               <div>

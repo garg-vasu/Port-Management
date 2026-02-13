@@ -79,8 +79,8 @@ export interface NavigationItem {
 // Navigation items organized by user role
 const menuItemsByRole: Record<string, NavigationItem[]> = {
   superadmin: [
-    { name: "All NFA", icon: ClipboardList, href: "/" },
-    { name: "Add NFA", icon: ScrollText, href: "/add/nfa" },
+    { name: "All Consignments", icon: ClipboardList, href: "/" },
+    { name: "Create Consignment", icon: ScrollText, href: "/add/nfa" },
     { name: "Stages", icon: FolderKanban, href: "/stages" },
     { name: "Stage Creation", icon: LayoutTemplate, href: "/add/stage" },
     {
@@ -294,11 +294,11 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
         >
           <div className="w-8 h-8 bg-primary flex items-center justify-center rounded">
             <span className="text-primary-foreground font-bold text-sm">
-              LM
+              CT
             </span>
           </div>
           <span className="font-semibold text-lg whitespace-nowrap">
-            Logistics Manag.
+            C Tracking
           </span>
         </div>
 

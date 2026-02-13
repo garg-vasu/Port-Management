@@ -21,7 +21,9 @@ export default function MainContent({ isSidebarCollapsed }: MainContentProps) {
           <div className="px-6 py-4">
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <div className="flex items-center space-x-4">
-                <span>© 2026 Port Management System. All rights reserved.</span>
+                <span>
+                  © 2026 Consignment Tracking System. All rights reserved.
+                </span>
               </div>
               <div className="flex items-center space-x-4">
                 <NavLink

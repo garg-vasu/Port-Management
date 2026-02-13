@@ -303,7 +303,7 @@ export function CompletedNfa() {
 
     generatePDFFromTable({
       selectedRows,
-      title: "Completed NFA Report",
+      title: "Completed Consignment Report",
       headers: ["Name", "NFA Code", "Current Stage Name", "Description"],
       dataMapper: (row): string[] => {
         const completedNfa = row.original as CompletedNfa;
@@ -314,9 +314,9 @@ export function CompletedNfa() {
           completedNfa.description || "—",
         ];
       },
-      fileName: `completed-nfa-report-${new Date().toISOString().split("T")[0]}.pdf`,
+      fileName: `completed-consignment-report-${new Date().toISOString().split("T")[0]}.pdf`,
       successMessage:
-        "PDF downloaded successfully with {count} completed NFA(s)",
+        "PDF downloaded successfully with {count} completed Consignment(s)",
       emptySelectionMessage: "Please select at least one row to download",
       titleFontSize: 24,
       headerColor: "#283C6E",
@@ -370,7 +370,7 @@ export function CompletedNfa() {
             onClick={() => navigate("/add/nfa")}
           >
             <Plus className="mr-2 h-4 w-4" />
-            Add NFA
+            Add Consignment
           </Button>
 
           <DropdownMenu>

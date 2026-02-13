@@ -272,7 +272,9 @@ export function NfaDetailPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] w-full gap-3">
         <Loader2 className="h-9 w-9 animate-spin text-primary" />
-        <p className="text-sm text-muted-foreground">Loading NFA details...</p>
+        <p className="text-sm text-muted-foreground">
+          Loading Consignment details...
+        </p>
       </div>
     );
   }
@@ -280,7 +282,7 @@ export function NfaDetailPage() {
   if (!nfa) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] w-full gap-4 p-6">
-        <p className="text-sm text-muted-foreground">NFA not found</p>
+        <p className="text-sm text-muted-foreground">Consignment not found</p>
         <Button variant="outline" onClick={() => navigate("/")}>
           <ArrowLeft className="h-4 w-4" />
           Back to dashboard
@@ -303,7 +305,7 @@ export function NfaDetailPage() {
         >
           <ArrowLeft className="h-4 w-4" />
         </Button> */}
-        <PageHeader title={`NFA Code : ${nfa.nfa_code}`} />
+        <PageHeader title={`Consignment Code : ${nfa.nfa_code}`} />
       </div>
 
       <div className=" space-y-3 mt-2">

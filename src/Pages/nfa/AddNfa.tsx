@@ -177,7 +177,7 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
       toast.success(
         successCount === 1
           ? "File uploaded successfully!"
-          : `${successCount} files uploaded successfully!`
+          : `${successCount} files uploaded successfully!`,
       );
     }
   };
@@ -239,7 +239,7 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
           payload,
         );
         if (response.status === 200 || response.status === 201) {
-          toast.success("NFA updated successfully!");
+          toast.success("Consignment updated successfully!");
           refresh();
           if (onClose) {
             onClose();
@@ -250,7 +250,7 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
         // Create new end client
         const response = await apiClient.post("/createnfa", payload);
         if (response.status === 200 || response.status === 201) {
-          toast.success("NFA created successfully!");
+          toast.success("Consignment created successfully!");
           refresh();
           if (onClose) {
             onClose();
@@ -261,7 +261,7 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
     } catch (error: unknown) {
       const errorMessage = getErrorMessage(
         error,
-        isEditMode ? "update nfa" : "create nfa",
+        isEditMode ? "Update Consignment" : "Create Consignment",
       );
       toast.error(errorMessage);
       // Refresh even on error to ensure data is up to date
@@ -274,7 +274,9 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
   return (
     <div className="flex flex-col gap-2 py-4 px-4">
       <div className="flex items-center justify-between">
-        <PageHeader title={isEditMode ? "Edit NFA" : "Add NFA"} />
+        <PageHeader
+          title={isEditMode ? "Edit Consignment" : "Create Consignment"}
+        />
       </div>
       <Separator />
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -282,12 +284,12 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
           {/* Name */}
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="name">
-              Name <span className="text-red-500">*</span>
+              Enter Importer Name <span className="text-red-500">*</span>
             </Label>
             <Input
               id="name"
               type="text"
-              placeholder="Name"
+              placeholder="Enter Importer Name"
               {...register("name")}
               aria-invalid={!!errors.name}
             />
@@ -299,11 +301,11 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
           {/* Organization Name */}
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="description">
-              Description <span className="text-red-500">*</span>
+              Enter Description <span className="text-red-500">*</span>
             </Label>
             <Input
               id="description"
-              placeholder="Description"
+              placeholder="Enter Description"
               {...register("description")}
               aria-invalid={!!errors.description}
             />
@@ -326,7 +328,8 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
                 "flex flex-col items-center justify-center gap-3 min-h-[140px] rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer",
                 "bg-muted/30 hover:bg-muted/50",
                 isDragging && "border-primary bg-primary/5 scale-[1.01]",
-                isUploadingAttachment && "opacity-60 cursor-not-allowed pointer-events-none",
+                isUploadingAttachment &&
+                  "opacity-60 cursor-not-allowed pointer-events-none",
               )}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -347,7 +350,8 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
                     <p className="text-sm font-medium">Uploading files...</p>
                     {uploadingCount > 0 && (
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        {uploadingCount} file{uploadingCount !== 1 ? "s" : ""} remaining
+                        {uploadingCount} file{uploadingCount !== 1 ? "s" : ""}{" "}
+                        remaining
                       </p>
                     )}
                   </div>
@@ -364,7 +368,9 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
                   </div>
                   <div className="text-center px-4">
                     <p className="text-sm font-medium">
-                      {isDragging ? "Drop files here" : "Drag & drop files here"}
+                      {isDragging
+                        ? "Drop files here"
+                        : "Drag & drop files here"}
                     </p>
                     <p className="text-xs text-muted-foreground mt-1">
                       or{" "}
@@ -374,7 +380,15 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
                       to upload
                     </p>
                     <p className="text-xs text-muted-foreground mt-2">
-                      Max 10MB per file · Hold <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">Shift</kbd> or <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">Ctrl</kbd> to select multiple files
+                      Max 10MB per file · Hold{" "}
+                      <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">
+                        Shift
+                      </kbd>{" "}
+                      or{" "}
+                      <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">
+                        Ctrl
+                      </kbd>{" "}
+                      to select multiple files
                     </p>
                   </div>
                 </>
@@ -385,7 +399,8 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
             {attachments.length > 0 && (
               <div className="space-y-2">
                 <p className="text-sm font-medium text-muted-foreground">
-                  {attachments.length} file{attachments.length !== 1 ? "s" : ""} added
+                  {attachments.length} file{attachments.length !== 1 ? "s" : ""}{" "}
+                  added
                 </p>
                 <div className="grid gap-2 max-h-[200px] overflow-y-auto pr-1">
                   {attachments.map((attachment, index) => (
@@ -416,7 +431,9 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
             )}
 
             {errors.attachment && (
-              <p className="text-sm text-red-600">{errors.attachment.message}</p>
+              <p className="text-sm text-red-600">
+                {errors.attachment.message}
+              </p>
             )}
           </div>
         </div>
@@ -446,9 +463,9 @@ export function AddNfa({ refresh, initialData, onClose }: AddNfaProps) {
                 {isEditMode ? "Updating..." : "Creating..."}
               </>
             ) : isEditMode ? (
-              "Update NFA"
+              "Update"
             ) : (
-              "Create NFA"
+              "Create"
             )}
           </Button>
         </div>

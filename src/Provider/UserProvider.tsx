@@ -43,7 +43,6 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType>({
   user: null,
   loading: false,
-
   error: null,
 });
 
@@ -70,6 +69,7 @@ const getErrorMessage = (error: AxiosError | unknown): string => {
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+
   //   const [capabilities, setCapabilities] = useState<Capabilities | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +91,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         });
 
         if (response.status === 200) {
-          setUser(response.data.user);
+          setUser(response.data);
           //   setCapabilities(response.data.capabilities);
           setError(null);
         } else {

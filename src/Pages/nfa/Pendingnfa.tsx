@@ -99,7 +99,7 @@ export const columns: ColumnDef<PendingNfa>[] = [
   // NFA CODE
   {
     id: "nfa_code",
-    header: "NFA Code",
+    header: "Consignment Code",
     accessorFn: (pendingNfa) => pendingNfa.nfa_code ?? "",
     cell: ({ row }) => {
       const navigate = useNavigate();
@@ -350,7 +350,7 @@ export function PendingNfa() {
 
     generatePDFFromTable({
       selectedRows,
-      title: "Pending NFA Report",
+      title: "Pending Consignment Report",
       headers: ["Name", "NFA Code", "Current Stage Name", "Description"],
       dataMapper: (row): string[] => {
         const pendingNfa = row.original as PendingNfa;
@@ -361,8 +361,9 @@ export function PendingNfa() {
           pendingNfa.description || "—",
         ];
       },
-      fileName: `pending-nfa-report-${new Date().toISOString().split("T")[0]}.pdf`,
-      successMessage: "PDF downloaded successfully with {count} pending NFA(s)",
+      fileName: `pending-consignment-report-${new Date().toISOString().split("T")[0]}.pdf`,
+      successMessage:
+        "PDF downloaded successfully with {count} pending Consignment(s)",
       emptySelectionMessage: "Please select at least one row to download",
       titleFontSize: 24,
       headerColor: "#283C6E",
@@ -414,7 +415,7 @@ export function PendingNfa() {
             onClick={() => navigate("/add/nfa")}
           >
             <Plus className="mr-2 h-4 w-4" />
-            Add NFA
+            Add Consignment
           </Button>
 
           <DropdownMenu>

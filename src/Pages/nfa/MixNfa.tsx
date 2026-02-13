@@ -11,6 +11,7 @@ import { List, MoreHorizontal } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { PendingNfa } from "./Pendingnfa";
 import { CompletedNfa } from "./Completednfa";
+import { CountingNfa } from "./CountingNfa";
 
 interface TabLink {
   id: string;
@@ -61,10 +62,10 @@ export default function MixNfa() {
     return (
       <div className="flex flex-col gap-2 py-4 px-4">
         <div className="flex items-center justify-between">
-          <PageHeader title="Mix Drawing" />
+          <PageHeader title="Consignment" />
         </div>
         <div className="text-center py-8 text-muted-foreground">
-          You do not have permission to view any NFA sections.
+          You do not have permission to view any Consignment sections.
         </div>
       </div>
     );
@@ -73,7 +74,11 @@ export default function MixNfa() {
   return (
     <div className="flex flex-col gap-2 py-4 px-4">
       <div className="flex items-center justify-between">
-        <PageHeader title="NFA" />
+        <PageHeader title="Consignment" />
+      </div>
+      {/* count section  */}
+      <div className="w-full">
+        <CountingNfa />
       </div>
       {/* pills section  */}
       <div className="flex flex-col gap-2">
