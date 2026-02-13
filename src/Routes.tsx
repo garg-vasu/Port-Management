@@ -15,9 +15,11 @@ import { AddNfa } from "./Pages/nfa/AddNfa";
 
 import { ApprovalPending } from "./Pages/nfa/ApprovalPending";
 import { NfaDetailPage } from "./Pages/nfa/nfadetailpage";
+import { NfaSearchPage } from "./Pages/NfaSearchPage";
 
 const routes: RouteObject[] = [
   { path: "/login", element: <Login /> },
+  { path: "/nfa-search", element: <NfaSearchPage /> },
   {
     path: "/",
     element: (

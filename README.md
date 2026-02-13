@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# POR Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A consignment (NFA) tracking and management system built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Public Pages
+- **Consignment Search** (`/nfa-search`) — Public page where anyone can enter a consignment code to track its status and pipeline progress. No login required.
+- **Login** (`/login`) — Authentication page for admin/staff users.
 
-## React Compiler
+### Authenticated Pages (require login)
+- **Dashboard** (`/`) — Overview with consignment stats (Active, Under Custom, Pending Document) and tabbed views for Pending and Completed consignments.
+- **Consignment Detail** (`/nfa-detail/:nfa_id`) — Detailed view of a specific consignment including basic info, status, progress bar, file attachments, and pipeline stage visualization.
+- **Add Consignment** (`/add/nfa`) — Form to create a new consignment (NFA).
+- **Approval Workflow** (`/working-nfa/:nfa_id/:stage_id`) — Stage-based approval interface for processing consignments.
+- **User Management** (`/users`, `/user-creation`, `/edit-user/:user_id`) — Create, view, and edit system users.
+- **Stage Management** (`/stages`, `/add/stage`, `/order-selection`) — Configure pipeline stages and their ordering.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework:** React 19 + TypeScript
+- **Build Tool:** Vite 7
+- **Routing:** React Router 7
+- **Styling:** Tailwind CSS 4 + shadcn/ui components
+- **HTTP Client:** Axios
+- **Forms:** React Hook Form + Zod validation
+- **Tables:** TanStack React Table
+- **PDF Export:** jsPDF + jspdf-autotable
+- **Icons:** Lucide React
+- **Notifications:** Sonner (toast)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the project root:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=http://your-api-url
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/ui/    # Reusable shadcn/ui components
+├── Layout/           # MainLayout, Sidebar, TopBar
+├── Pages/
+│   ├── nfa/          # Consignment pages (list, detail, add, approval)
+│   ├── User/         # User management pages
+│   ├── Stage/        # Stage configuration pages
+│   ├── NfaSearchPage.tsx   # Public consignment search
+│   └── login.tsx     # Login page
+├── Provider/         # Context providers (UserProvider)
+├── utils/            # API client, date formatting, helpers
+└── Routes.tsx        # Route definitions
 ```

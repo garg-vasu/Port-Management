@@ -92,7 +92,7 @@ export const columns: ColumnDef<CompletedNfa>[] = [
   // NFA CODE
   {
     id: "nfa_code",
-    header: "NFA Code",
+    header: "Consignment Code",
     accessorFn: (pendingNfa) => pendingNfa.nfa_code ?? "",
     cell: ({ row }) => {
       const navigate = useNavigate();
@@ -332,7 +332,7 @@ export function CompletedNfa() {
       {/* top toolbar */}
       <div className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
         <Input
-          placeholder="Filter by nfa code "
+          placeholder="Filter by consignment code "
           value={
             (table.getColumn("nfa_code")?.getFilterValue() as string) ?? ""
           }
