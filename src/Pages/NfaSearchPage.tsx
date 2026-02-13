@@ -281,9 +281,10 @@ export function NfaSearchPage() {
   const row2 = pipeline.slice(midpoint);
 
   return (
-    <div className="flex min-h-screen flex-col items-center px-4 py-10 sm:py-16">
+    <div className="h-dvh w-full overflow-y-auto bg-background">
+      <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
       {/* ── Header ────────────────────────────────────────────────── */}
-      <div className="w-full max-w-2xl space-y-1 text-center">
+      <div className="w-full space-y-1 text-center">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Track Your Consignment
         </h1>
@@ -294,7 +295,7 @@ export function NfaSearchPage() {
       </div>
 
       {/* ── Search Bar ────────────────────────────────────────────── */}
-      <Card className="mt-6 w-full max-w-2xl">
+      <Card className="mt-6 w-full">
         <CardContent className="p-4 sm:p-6">
           <Label htmlFor="nfa-code" className="mb-2 block text-sm font-medium">
             Consignment Code
@@ -326,7 +327,7 @@ export function NfaSearchPage() {
       </Card>
 
       {/* ── Results Area ──────────────────────────────────────────── */}
-      <div className="mt-6 w-full max-w-2xl">
+      <div className="mt-6 w-full">
         {/* Idle — show nothing or a gentle prompt */}
         {searchState === "idle" && (
           <Card>
@@ -542,6 +543,7 @@ export function NfaSearchPage() {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
