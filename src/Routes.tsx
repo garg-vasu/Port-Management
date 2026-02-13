@@ -3,9 +3,6 @@ import type { RouteObject } from "react-router";
 import UserCreationTable from "./Pages/User/UserCreationtable";
 import MainLayout from "./Layout/MainLayout";
 import { UserTable } from "./Pages/User/UserTable";
-
-import { AllNfa } from "./AllNfa";
-
 import StageCreationTable from "./Pages/Stage/AddStage";
 import Login from "./Pages/login";
 import PrivateRoute from "./Pages/PrivateRoute";
@@ -17,8 +14,7 @@ import EditUser from "./Pages/User/EditUser";
 import { AddNfa } from "./Pages/nfa/AddNfa";
 
 import { ApprovalPending } from "./Pages/nfa/ApprovalPending";
-
-import { NfaDetailPage } from "./Pages/nfa/nfaDetailPage";
+import { NfaDetailPage } from "./Pages/nfa/nfadetailpage";
 
 const routes: RouteObject[] = [
   { path: "/login", element: <Login /> },

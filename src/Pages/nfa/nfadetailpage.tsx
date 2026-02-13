@@ -1,4 +1,5 @@
 import { apiClient } from "@/utils/apiClient";
+import { formatDisplayDate } from "@/utils/formatdate";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
@@ -47,6 +48,8 @@ export type Pipeline = {
   stage_name: string;
   status: string;
   is_current: boolean;
+  created_at?: string;
+  completed_at?: string;
 };
 
 /* ------------------------------------------------------------------ */
@@ -165,21 +168,36 @@ function PipelineRow({ stages }: { stages: Pipeline[] }) {
               </p>
 
               {/* Stage status label */}
-              <span
-                className={`text-[10px] mt-0.5 ${
-                  completed
-                    ? "text-emerald-600 dark:text-emerald-400"
+              {/* Stage status label + Date */}
+              <div className="flex flex-col items-center mt-0.5 space-y-0.5">
+                <span
+                  className={`text-[10px] font-medium leading-tight ${
+                    completed
+                      ? "text-emerald-600 dark:text-emerald-400"
+                      : stage.is_current
+                        ? "text-amber-600 dark:text-amber-400"
+                        : "text-muted-foreground/60"
+                  }`}
+                >
+                  {completed
+                    ? "Completed"
                     : stage.is_current
-                      ? "text-amber-600 dark:text-amber-400"
-                      : "text-muted-foreground/60"
-                }`}
-              >
-                {completed
-                  ? "Completed"
-                  : stage.is_current
-                    ? "In Progress"
-                    : "Pending"}
-              </span>
+                      ? "In Progress"
+                      : "Pending"}
+                </span>
+
+                {/* Date Display */}
+                {completed && stage.completed_at && (
+                  <span className="text-[10px] text-muted-foreground/80 leading-tight">
+                    {formatDisplayDate(stage.completed_at)}
+                  </span>
+                )}
+                {stage.is_current && stage.created_at && (
+                  <span className="text-[10px] text-muted-foreground/80 leading-tight">
+                    Started: {formatDisplayDate(stage.created_at)}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Dotted connector line */}
@@ -285,7 +303,7 @@ export function NfaDetailPage() {
         >
           <ArrowLeft className="h-4 w-4" />
         </Button> */}
-        <PageHeader title={`NFA : ${nfa.id}`} />
+        <PageHeader title={`NFA Code : ${nfa.nfa_code}`} />
       </div>
 
       <div className=" space-y-3 mt-2">
